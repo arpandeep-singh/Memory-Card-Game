@@ -10,67 +10,72 @@
 #include "Card.h"
 using namespace std;
 
-class Game {
+namespace FinalProject {
+	class Game {
 
-private :
-	sf::RenderWindow* window;
-	sf::Event ev;
-	sf::VideoMode videoMode;
-	void initializeVariables();
-	void initWindow();
-	vector<Card*> cards;
-	vector<string> textureFiles;
-	sf::Texture* backTexture;
-	sf::Sprite* playAgainButton;
-	sf::Texture* playAgainTexture;
-	vector<sf::Texture*> textures;
-	Card* tempCard;
-	sf::Vector2i mousePosWindow;
+	private:
+		sf::RenderWindow* window;
+		sf::Event ev;
+		sf::VideoMode videoMode;
+		vector<Card*> cards;
+		vector<string> textureFiles;
+		sf::Texture* backTexture;
+		sf::Sprite* playAgainButton;
+		sf::Texture* playAgainTexture;
+		sf::Sprite* quitButton;
+		sf::Texture* quitTexture;
+		vector<sf::Texture*> textures;
+		Card* tempCard;
+		sf::Vector2i mousePosWindow;
 
-	Card* card1;
-	bool card1Flipped = false;
-	bool card2Flipped = false;
-	bool bothCardsMatched = false;
-	bool bothCardFlipped = false;
-	Card* card2;
+		Card* card1;
+		bool card1Flipped;
+		bool card2Flipped;
+		bool bothCardsMatched;
+		bool bothCardFlipped;
+		Card* card2;
 
-	int numOfMoves;
-	int numOfCardsOnScreen;
-	bool gameOver = false;
-	bool mouseHeld = false;
+		int numOfMoves;
+		int numOfCardsOnScreen;
+		bool gameOver;
+		bool mouseClicked;
 
-
-	sf::Font font;
-	sf::Text gameOverText;
-	sf::Text numOfMovesText;
-
-	sf::SoundBuffer cardMatchbuffer;
-	sf::SoundBuffer cardsNoMatchBuffer;
-	sf::SoundBuffer cardFlipBuffer;
-	sf::SoundBuffer gameStartBuffer;
-	sf::SoundBuffer gameOverBuffer;
-	sf::Sound cardsMatchSound;
-	sf::Sound cardsNotMatchSound;
-	sf::Sound cardFlipSound;
-	sf::Sound gameOverSound;
-	sf::Sound gameStartSound;
+		bool quitStatus = false;
 
 
+		sf::Font font;
+		sf::Text gameOverText;
+		sf::Text numOfMovesText;
 
-public:
-	Game();
-	~Game();
-	const bool isRunning() const; 
-	void initTextures();
-	void initCards();
-	void initSounds();
-	void playGame();
-	void renderCards();
-	void gameLogic();
-	void updateMousePositions();
-	void pollEvents();
-	void update();
-	void render();
+		sf::SoundBuffer cardMatchbuffer;
+		sf::SoundBuffer cardsNoMatchBuffer;
+		sf::SoundBuffer cardFlipBuffer;
+		sf::SoundBuffer gameStartBuffer;
+		sf::SoundBuffer gameOverBuffer;
+		sf::SoundBuffer menuClickBuffer;
+		sf::Sound menuClickSound;
+		sf::Sound cardsMatchSound;
+		sf::Sound cardsNotMatchSound;
+		sf::Sound cardFlipSound;
+		sf::Sound gameOverSound;
+		sf::Sound gameStartSound;
+
+		void initializeVariables();
+		void initWindow();
 
 
-};
+
+	public:
+		Game();
+		~Game();
+		void initTextures();
+		void initCards();
+		void initSounds();
+		void playGame();
+		void drawCards();
+		void gameLogic();
+		bool runGame();
+
+
+	};
+}

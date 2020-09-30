@@ -4,15 +4,15 @@
 #include "FinalProject.h"
 #include "Game.h"
 
-using namespace std;
+using namespace FinalProject;
 
 int main()
 {
 	Game game;
 
-	while (game.isRunning()) {
-		//game.update();
-		game.render();
+	while (true) {
+		bool playing = game.runGame();
+		if (!playing)break;
 	}
 	return 0;
 }
